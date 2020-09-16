@@ -1,5 +1,6 @@
 import React, { memo} from 'react'
-import { renderRoutes } from 'react-router-config'
+import { renderRoutes ,matchRoutes} from 'react-router-config'
+import { Route,Redirect } from 'react-router-dom';
 import { Layout} from 'antd';
 import  NavContend from './components/NavContend';
 import  HeadContend from './components/HeadContend';
@@ -7,7 +8,7 @@ import  HeadContend from './components/HeadContend';
 const { Header, Content,Sider } = Layout;
 
 export default memo((props)=>{
-	console.log(props.route)
+	console.log(props)
     return (
 		<Layout className="layout">
 			<Header>
@@ -18,6 +19,7 @@ export default memo((props)=>{
 				<NavContend/>
 			</Sider>
 			<Content>
+			{/* <Route to={props.route.children[0].path} component = {props.route.children[0].component}></Route> */}
 				{renderRoutes(props.route.children)}
 			</Content>
 			</Layout>

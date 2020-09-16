@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 //上面三个必不可少的,你可以对照一开始打建的项目路由引入作比较
 //这个文件就是路由分离的文件

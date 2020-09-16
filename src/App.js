@@ -1,94 +1,47 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import {router} from "./router/router";
-// const router = [
-//   {
-//     path: "/",
-//     exact: true,
-//     sidebar: () => <div>home!</div>,
-//     main: () => <h2>Home</h2>
-//   },
-//   {
-//     path: "/bubblegum",
-//     sidebar: () => <div>bubblegum!</div>,
-//     main: () => <h2>Bubblegum</h2>
-//   },
-//   {
-//     path: "/shoelaces",
-//     sidebar: () => <div>shoelaces!</div>,
-//     main: () => <h2>Shoelaces</h2>
-//   }
-// ];
+import { Route,Redirect ,Switch} from 'react-router-dom';
+// import { renderRoutes } from 'react-router-config'
+class App extends React.Component {
+    constructor(props){
+		super(props)
+		console.log(props)
+        this.state ={
+            props:props
+        }
+        
+    }
+    
+    render() {
+        const { location,config } = this.props;
+        const { pathname } = location;
+        console.log(pathname)
+        
+        return (
+            // <Route   to= {this.state.props.route.children[1].path} component = {this.state.props.route.children[1].component}></Route >
+            renderRoutes(this.state.props.route.children)
+        )
+    }
+};
+const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
+  (routes ? (
+    <Switch {...switchProps}>
+      {routes.map((route, i) => (
+        <Route
+          exact={route.exact}
+          key={route.key || i}
+          path={route.path}
+          exact= {route.path==='/index'?true:false}
+          render={props =>
+            (route.render ? (
+              route.render(props)
+            ) : (
+              <route.component {...props} {...extraProps} route={route} />
+            ))
+          }
+          strict={route.strict}
+        />
+      ))}
+    </Switch>
+  ) : null);
 
-export default function SidebarExample() {
-const list1 = router.map(function(route, index) {
-	
-	  if(route.children){
-		let listItemst = route.children.map(function(element,j){
-			if(element.children){
-				let listItemst2 = element.children.map(function(element2,k){
-					return (
-						<Route
-							key={index+"-"+j+"-"+k}
-							exact={index===0?true:false}
-							path={element2.path}
-							component={element2.component}
-						/>
-					)
-				})
-				return(
-					<Route
-						key={index+"-"+j}
-						exact={index===0?true:false}
-						path={element.path}
-						component={element.component}
-					>
-						{listItemst2}
-					</Route>
-				)
-			}else{
-				return(
-					<Route
-					key={index+"-"+j}
-					exact={index===0?true:false}
-					path={element.path}
-					component={element.component}
-				/>
-				)
-			}
-			
-		})
-		return(
-			<Route
-				key={index}
-				exact={index===0?true:false}
-				path={route.path}
-				component={route.component}
-	 	 	>
-			  {listItemst}
-		  </Route>
-		)
-		  
-	  }else{
-		return (
-			<Route
-				key={index}
-				exact={index===0?true:false}
-				path={route.path}
-				component={route.component}
-			></Route>
-		)
-	  }
-	
-  })
-  console.log(list1)
-  return (
-    <Router>
-         {list1}
-    </Router>
-  );
-}
+export default App;

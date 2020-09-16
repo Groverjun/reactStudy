@@ -15,20 +15,20 @@ class NavContend extends React.Component {
 	};
 	render() {
 		const { current } = this.state;
-		const listItems = router[0].children.map(function(number){
+		const listItems = router[0].children[1].children.map(function(number){
 				if(number.children){
 					let listItemst = number.children.map(function(element){
-						return(<Menu.Item key={element.redirect}><Link to={element.redirect}>{element.title}</Link></Menu.Item>)
+						return(<Menu.Item key={element.path}><Link to={element.path}>{element.title}</Link></Menu.Item>)
 					})
 					return (
-						<SubMenu key={number.redirect} icon={<MailOutlined />} title={number.title}>
+						<SubMenu key={number.path} icon={<MailOutlined />} title={number.title}>
 							{listItemst}
 						</SubMenu>	
 					)
 				}else{
 					return	(
-						<Menu.Item key={number.redirect} icon={<MailOutlined />} >
-							<Link to={number.redirect}>{number.title}</Link>
+						<Menu.Item key={number.path} icon={<MailOutlined />} >
+							<Link to={number.path}>{number.title}</Link>
 						</Menu.Item>
 					)
 					
