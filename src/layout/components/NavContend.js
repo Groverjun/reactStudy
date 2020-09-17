@@ -6,8 +6,13 @@ import { Link } from 'react-router-dom'
 import {router} from "../../router/router"
 const { SubMenu } = Menu;
 class NavContend extends React.Component {
+	constructor(props){
+		super(props)
+        console.log('-------------------')
+        console.log(window.location.pathname)
+	}
 	state = {
-		current: window.location.pathname==='/'?"/home/test":window.location.pathname
+		current:window.location.pathname
 	};
 	handleClick = e => {
 		// console.log('click ', e);
