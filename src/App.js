@@ -30,7 +30,6 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
           exact={route.exact}
           key={route.key || i}
           path={route.path}
-          exact= {route.path==='/index'?true:false}
           render={props =>
             (route.render ? (
               route.render(props)

@@ -4,7 +4,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                 <Link to="/home">00000</Link>
+                 <Link to="/home">Login</Link>
             </div>
         )
     }
