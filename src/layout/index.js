@@ -20,11 +20,8 @@ export default memo((props)=>{
 				<NavContend/>
 			</Sider>
 			<Content>
-				<Redirect to="/home"/>
-				{/* <Route path="/" component={Home} exact route={props.route.children[0].children}/> */}
+				<Redirect to="/index/home"/>
 				{renderRoutes(props.route.children)}
-				{/* <Route path="/home" component= {Home} exact></Route> */}
-				{/* {props.route.children} */}
 			</Content>
 			</Layout>
 		</Layout>

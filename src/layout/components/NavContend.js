@@ -15,7 +15,7 @@ class NavContend extends React.Component {
 	};
 	render() {
 		const { current } = this.state;
-		const listItems = router[0].children.map(function(number){
+		const listItems = router[0].children[1].children.map(function(number){
 				if(number.children){
 					let listItemst = number.children.map(function(element){
 						return(<Menu.Item key={element.path}><Link to={element.path}>{element.title}</Link></Menu.Item>)

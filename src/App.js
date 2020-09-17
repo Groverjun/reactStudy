@@ -17,8 +17,10 @@ class App extends React.Component {
         console.log(pathname)
         
         return (
-            // <Route   to= {this.state.props.route.children[1].path} component = {this.state.props.route.children[1].component}></Route >
-            renderRoutes(this.state.props.route.children)
+           <div className ="app">
+              <Redirect to="/index"/>
+              {renderRoutes(this.state.props.route.children)}
+           </div>
         )
     }
 };

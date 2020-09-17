@@ -14,7 +14,7 @@ class Home extends React.Component {
         return (
             <div>
                 00
-                <Redirect to="/home/test"/>
+                <Redirect to="/index/home/test"/>
                 {renderRoutes(this.state.props.route.children)}
             </div>
         )
