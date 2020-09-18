@@ -9,12 +9,14 @@ import {router} from './router'
 HashRouter
 1.用这个了就代表路径加上/#/
 2.换成BrowserRouter了；路径就不需要加/#/
-3.用HashRouter了就要把path的路径名字带上，如果首次加载默认的话要这样写： <Route exact path="/"  component={App}/>
+3.用HashRouter了就要把path的路径名字带上，如果首次加载默认的话要这样写： 
 
 */
 const BasicRoute = () => (
+
     <BrowserRouter >
         {renderRoutes(router)} 
     </BrowserRouter>
+    
 );
 export default BasicRoute;

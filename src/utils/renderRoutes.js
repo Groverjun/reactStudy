@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Route,Redirect ,Switch} from 'react-router-dom';
 
-import {router} from "../router/router"
 let result = []
 function routerFind(arr,result) {
   arr.forEach(item => {
@@ -17,6 +16,7 @@ function routerFind(arr,result) {
 }
 
 export const renderRoutes = (routes) =>{
+	console.log(routes)
 	return(routes ? (
 		<Switch>
 		  {routes.map((route, i) => {
@@ -27,7 +27,7 @@ export const renderRoutes = (routes) =>{
 						path={route.path}
 						render={
 							props =>{
-								if(!routerFind(router,result)){
+								if(!routerFind(routes,result)){
 									return <Redirect to ='/404'></Redirect>
 								}else{
 									if(!route.render){//没有默认下级
