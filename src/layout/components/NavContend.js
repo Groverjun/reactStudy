@@ -3,14 +3,8 @@ import { Menu } from 'antd';
 
 import {MailOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom'
-import {router} from "../../router/router"
 const { SubMenu } = Menu;
 class NavContend extends React.Component {
-	constructor(props){
-		super(props)
-        console.log('-------------------')
-        console.log(window.location.pathname)
-	}
 	state = {
 		current:window.location.pathname
 	};
@@ -19,8 +13,9 @@ class NavContend extends React.Component {
 		this.setState({ current: e.key });
 	};
 	render() {
+		console.log(this.props)
 		const { current } = this.state;
-		const listItems = router[0].children[1].children.map(function(number){
+		const listItems = this.props.route.children.map(function(number){
 				if(number.children){
 					let listItemst = number.children.map(function(element){
 						return(<Menu.Item key={element.path}><Link to={element.path}>{element.title}</Link></Menu.Item>)

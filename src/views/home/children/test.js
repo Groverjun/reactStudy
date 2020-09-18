@@ -5,6 +5,10 @@ class Test extends React.Component {
         return (
             <div>
                 <Link to="/login">00000</Link>
+                <button onClick={()=>{
+                    console.log(0)
+                    this.props.history.push('/login');
+                }}>跳转</button>
             </div>
         )
     }
