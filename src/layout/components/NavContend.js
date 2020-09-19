@@ -5,8 +5,9 @@ import {MailOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom'
 const { SubMenu } = Menu;
 class NavContend extends React.Component {
+	
 	state = {
-		current:window.location.pathname
+		current:this.props.location.pathname
 	};
 	handleClick = e => {
 		// console.log('click ', e);
@@ -14,7 +15,9 @@ class NavContend extends React.Component {
 	};
 	render() {
 		console.log(this.props)
+		// this.setState({ current: this.props.location.pathname });
 		const { current } = this.state;
+		console.log(current)
 		const listItems = this.props.route.children.map(function(number){
 				if(number.children){
 					let listItemst = number.children.map(function(element){

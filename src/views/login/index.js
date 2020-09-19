@@ -4,7 +4,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                 <Link to="/index">Login</Link>
+                 <Link to="/index/home/test">Login</Link>
             </div>
         )
     }
