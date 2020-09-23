@@ -5,6 +5,25 @@ import Login from '../views/login/index'
 import Test from '../views/home/children/test'
 import Test2 from '../views/home/children/test2'
 import F404 from '../views/other/404'
+const routerLogin = [
+    {
+        path: '/',
+        component: App,
+        render:"/login",
+        children:[
+            {
+                path: '/login',
+                title:"登录",
+                component: Login,
+            },
+            {
+                path: '/404',
+                title:"404",
+                component: F404,
+            },
+        ]
+    }    
+]
 const router = [
     {
         path: '/',
@@ -88,4 +107,4 @@ const router = [
     // },
     
 ];
-export {router}
+export {router,routerLogin}
