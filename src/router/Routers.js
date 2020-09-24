@@ -24,16 +24,16 @@ class BasicRoute extends React.Component {
         
         //模拟异步加载路由
         setTimeout(() => {
-            this.setState({router:routerLogin})
             //添加路由
-            this.props.addRouter(routerLogin) 
-            console.log(this.props)
+            if(this.props.state.user.router.length===0){
+                this.props.addRouter(routerLogin) 
+            }
         }, 1000);
        
     }
     render() {
         return (
-            this.state.router.length===0?
+            this.props.state.user.router.length===0?
                 <div className ="loading_router">
                     <Spin />
                 </div>

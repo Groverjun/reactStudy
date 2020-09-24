@@ -5,6 +5,24 @@ import 'antd/dist/antd.css';
 import Routers from "./router/Routers"
 import { Provider } from 'react-redux'
 import store from './store/index'
+import { addRouter} from './store/actions/index'
+let data = sessionStorage.getItem("router")
+	if(data){
+		console.log(addLevel(JSON.parse(data)[0]))
+		store.dispatch(addRouter([addLevel(JSON.parse(data)[0])]))
+	}
+function addLevel(data) {
+    if (!data) {
+      return;
+	}
+    data.component = require('@/'+data.url).default;
+  
+    data.children && data.children.forEach(element => {
+      addLevel(element);
+    });
+  
+    return data;
+  }
 ReactDOM.render(
 	<Provider store={store}>
 		<Routers/>

@@ -9,6 +9,7 @@ export default function(state = userState, action) {
   switch (action.type) {
     case ADD_ROUTER: {
       //
+      sessionStorage.setItem("router",JSON.stringify(action.payload))
       return {
         ...state,
         router:action.payload
