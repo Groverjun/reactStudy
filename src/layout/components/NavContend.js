@@ -14,10 +14,7 @@ class NavContend extends React.Component {
 		this.setState({ current: e.key });
 	};
 	render() {
-		console.log(this.props)
-		// this.setState({ current: this.props.location.pathname });
 		const { current } = this.state;
-		console.log(current)
 		const listItems = this.props.route.children.map(function(number){
 				if(number.children){
 					let listItemst = number.children.map(function(element){

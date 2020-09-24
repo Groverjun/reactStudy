@@ -120,17 +120,4 @@ const router = [
     // },
     
 ];
-function addLevel(data) {
-    if (!data) {
-      return;
-    }
-    data.component = require('@/'+data.url).default;
-  
-    data.children && data.children.forEach(element => {
-      addLevel(element);
-    });
-  
-    return data;
-  }
-  console.log(addLevel(routerLogin[0]))
 export {router,routerLogin}

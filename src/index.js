@@ -8,7 +8,6 @@ import store from './store/index'
 import { addRouter} from './store/actions/index'
 let data = sessionStorage.getItem("router")
 	if(data){
-		console.log(addLevel(JSON.parse(data)[0]))
 		store.dispatch(addRouter([addLevel(JSON.parse(data)[0])]))
 	}
 function addLevel(data) {

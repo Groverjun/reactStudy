@@ -9,7 +9,6 @@ const { Header, Content,Sider } = Layout;
 
 class Layouts extends React.Component {
     render() {
-		console.log(this.props)
         return (
             <Layout className="layout">
 			<Header>

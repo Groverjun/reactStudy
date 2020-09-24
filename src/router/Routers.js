@@ -4,7 +4,7 @@ import {renderRoutes} from "../utils/renderRoutes"
 import { Spin } from 'antd';
 //上面三个必不可少的,你可以对照一开始打建的项目路由引入作比较
 //这个文件就是路由分离的文件
-import {router,routerLogin} from './router'
+import {routerLogin} from './router'
 import { connect } from 'react-redux'
 import { addRouter} from '../store/actions/index'
 /*
@@ -17,18 +17,9 @@ HashRouter
 class BasicRoute extends React.Component {
     constructor(props){
         super(props)
-        console.log(this.props)
-        this.state = {
-            router:[]
+        if(this.props.state.user.router.length===0){
+            this.props.addRouter(routerLogin) 
         }
-        
-        //模拟异步加载路由
-        setTimeout(() => {
-            //添加路由
-            if(this.props.state.user.router.length===0){
-                this.props.addRouter(routerLogin) 
-            }
-        }, 1000);
        
     }
     render() {

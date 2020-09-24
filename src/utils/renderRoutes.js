@@ -16,7 +16,6 @@ function routerFind(arr,result) {
 }
 
 export const renderRoutes = (routes) =>{
-	console.log(routes)
 	return(routes ? (
 		<Switch>
 		  {routes.map((route, i) => {
