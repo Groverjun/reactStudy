@@ -1,11 +1,13 @@
 html,body,#root,.layout,.app{
     height: 100%;
+    box-sizing: border-box;
 }
 .ant-layout-sider{
     background-color: #fff;
 }
 .header{
     color: #fff;
+    
 }
 .loading_router{
     width: 100%;
@@ -13,4 +15,103 @@ html,body,#root,.layout,.app{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.logo{
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+.ant-layout-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.title-line-wrapper {
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+}
+.title-line-wrapper .title-line {
+    width: 64px;
+    height: 100%;
+    background: linear-gradient(90deg,rgba(24,144,255,0) 0,#1890ff);
+    transform: translateX(-64px);
+}
+.title-line-wrapper .title-line {
+    animation: page1TitleLine 3s ease-in-out 1.5s infinite;
+}
+@keyframes page1TitleLine{0%,25%{transform:translateX(-64px)}75%,to{transform:translateX(376px)}}
+// .ant-layout-sider{
+// }
+// .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+//     border-radius: 2000px;
+//     border-top-right-radius: 0;
+//     border-bottom-right-radius: 0;
+// }
+// .ant-layout-content{
+// }
+.Richtext{
+    background-color: #fff;
+
+
+}
+.ant-layout-header{
+    height: auto;
+    padding: 0 ;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: inherit;
+    background:none;
+    .header{
+        height: 64px;
+        padding: 0 50px;
+        color:#fff;
+        line-height: 64px;
+        background: #001529;
+    }
+}
+.headTab{
+    height: 37px;
+    margin-top: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    a{
+        margin: 0;
+        padding: 8px 16px;
+        background: #fafafa;
+        border: 1px solid #f0f0f0;
+        -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+        transition: all .3s cubic-bezier(.645,.045,.355,1);
+    }
+}
+.error404{
+    text-align: center;
+    padding-top: 30px;
+    a{
+        display: inline-block;
+        color: #fff;
+        background: #1890ff;
+        border-color: #1890ff;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,.045);
+        height: 32px;
+        padding: 4px 15px;
+        font-size: 14px;
+        border-radius: 2px;
+        margin:20px 10px;
+    }
+}
+.tableIcon{
+    .anticon{
+        opacity: 0;
+    }
+
+}
+.tableIcon:hover{
+    .anticon{
+        opacity: 1;
+    }
 }

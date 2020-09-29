@@ -1,8 +1,8 @@
-import { ADD_ROUTER } from "../actions/actionTypes";
+import { ADD_ROUTER ,USER_DATA} from "../actions/actionTypes";
 
 const userState = {
   router:[],
-  router1:[{a:"000"}],
+  userData:{}
 };
 
 export default function(state = userState, action) {
@@ -13,6 +13,13 @@ export default function(state = userState, action) {
       return {
         ...state,
         router:action.payload
+      };
+    }
+    case USER_DATA: {
+      sessionStorage.setItem("userData",JSON.stringify(action.payload))
+      return {
+        ...state,
+        userData:action.payload
       };
     }
     default:

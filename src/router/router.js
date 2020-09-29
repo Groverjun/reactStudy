@@ -2,11 +2,7 @@ import Layout from '@/layout/index'
 import Home from '@/views/home/index'
 import App from '@/App'
 import Login from '@/views/login/index'
-import Test from '../views/home/children/test'
-import Test2 from '../views/home/children/test2'
 import F404 from '@/views/other/404'
-// console.log(App)
-// console.log( require('@/App').default)
 const routerLogin = [
     {
         path: '/',
@@ -46,25 +42,91 @@ const router = [
                 children: [
                     {
                         path: '/index/home',
-                        title:"首页",
+                        title:"仪表盘",
                         url:"views/home/index",
                         component: Home,
-                        render:"/index/home/test",
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/checkClient',
+                        title:"查客户",
+                        url:"views/checkClient/index",
+                        component: require('@/views/checkClient/index').default,
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/clientAdmins',
+                        title:"客户管理",
+                        url:"views/clientAdmin/index",
+                        component: require('@/views/clientAdmin/index').default,
+                        render:"/index/clientAdmins/clientAdmin",
+                        icon:"icon-facebook",
                         children: [
                             {
-                                path: '/index/home/test',
-                                title:"test",
-                                url:"views/home/children/test",
-                                component: Test,
+                                path: '/index/clientAdmins/clientAdmin',
+                                title:"客户管理",
+                                url:"views/clientAdmin/clientAdmin",
+                                component: require('@/views/clientAdmin/clientAdmin').default,
+                                icon:"icon-facebook",
                             },
                             {
-                                path: '/index/home/test2',
-                                url:"views/home/children/test2",
-                                title:"test2",
-                                component: Test2,
+                                path: '/index/clientAdmins/signClient',
+                                title:"签单客户",
+                                url:"views/clientAdmin/signClient",
+                                component: require('@/views/clientAdmin/signClient').default,
+                                icon:"icon-facebook",
+                            },
+                            {
+                                path: '/index/clientAdmins/publicClient',
+                                title:"公海客户",
+                                url:"views/clientAdmin/publicClient",
+                                component: require('@/views/clientAdmin/publicClient').default,
+                                icon:"icon-facebook",
+                            },
+                            {
+                                path: '/index/clientAdmins/warning',
+                                title:"到期预警",
+                                url:"views/clientAdmin/warning",
+                                component: require('@/views/clientAdmin/warning').default,
+                                icon:"icon-facebook",
                             }
                         ]
                     },
+                    {
+                        path: '/index/salesTools',
+                        title:"销售工具",
+                        url:"views/salesTools/index",
+                        component: require('@/views/salesTools/index').default,
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/clientData',
+                        title:"客户数据",
+                        url:"views/clientData/index",
+                        component: require('@/views/clientData/index').default,
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/saleData',
+                        title:"销售数据",
+                        url:"views/saleData/index",
+                        component: require('@/views/saleData/index').default,
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/daily',
+                        title:"日常办公",
+                        url:"views/daily/index",
+                        component: require('@/views/daily/index').default,
+                        icon:"icon-facebook",
+                    },
+                    {
+                        path: '/index/systemSet',
+                        title:"系统设置",
+                        url:"views/systemSet/index",
+                        component: require('@/views/systemSet/index').default,
+                        icon:"icon-facebook",
+                    }
                     
                 ]
             },

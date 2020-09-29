@@ -5,7 +5,6 @@ class App extends React.Component {
 	render() {
     	return (
 			renderRoutes(this.props.route.children)
-			
         )
     }
 };
