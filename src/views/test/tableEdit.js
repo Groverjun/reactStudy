@@ -129,7 +129,7 @@ class EditableTable extends React.Component {
 				title: '年龄',
 				dataIndex: 'age',
 				formType:"Select",
-				editable: false,
+				// editable: false,
 			},
 			{
 				title: '时间',
