@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Table, Input, Form,Select,DatePicker } from 'antd';
+import moment from 'moment';
 const EditableContext = React.createContext();
 const { Option } = Select;
 
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
+  console.log(form)
   return (
     <Form form={form} component={false}>
 	<EditableContext.Provider value={form}>
@@ -15,14 +17,14 @@ const EditableRow = ({ index, ...props }) => {
 };
 
 const EditableCell = ({
-  title,
-  editable,
-  children,
-  dataIndex,
-  formType,
-  record,
-  handleSave,
-  ...restProps
+	title,
+	editable,
+	children,
+	dataIndex,
+	formType,
+	record,
+	handleSave,
+	...restProps
 }) => {
 	let childNode = children;
 	const [editing, setEditing] = useState(false);
@@ -43,6 +45,7 @@ const EditableCell = ({
 	const save = async (e) => {
 		try {
 			const values = await form.validateFields();
+			// console.log( values.format("YYYY-MM-DD HH:mm:ss"))
 			toggleEdit();
 			handleSave({ ...record, ...values });
 		} catch (errInfo) {
@@ -90,16 +93,10 @@ const EditableCell = ({
 					childNode = (
 						<Form.Item
 							name={dataIndex}
-							rules={[
-								{
-									required: true,
-									message: `${title} is required.`
-								},
-							]}
+							rules={ [{ type: 'object', required: true, message: 'Please select time!' }]}
 						>
-							<DatePicker
-								format="YYYY-MM-DD HH:mm:ss"
-							/>
+							<DatePicker ref={inputRef} onChange={save}/>
+							
 						</Form.Item>
 					)
 					break;
@@ -109,7 +106,7 @@ const EditableCell = ({
 		}else{
 			childNode = (
 				<div onClick={toggleEdit}>
-					{children}
+					1{children}
 				</div>
 			)
 		}
@@ -123,16 +120,22 @@ class EditableTable extends React.Component {
     	super(props);
 		this.columns = [
 			{
-				title: 'name',
+				title: '姓名',
 				dataIndex: 'name',
 				formType:"Input",
 				editable: true,
 			},
 			{
-				title: 'age',
+				title: '年龄',
 				dataIndex: 'age',
 				formType:"Select",
 				editable: false,
+			},
+			{
+				title: '时间',
+				dataIndex: 'time',
+				formType:"DatePicker",
+				editable: true,
 			}
 		];
 		this.state = {
@@ -142,17 +145,18 @@ class EditableTable extends React.Component {
 					key: '0',
 					name: 'Edward King 0',
 					age: '32',
-					address: 'London, Park Lane no. 0',
+					time:moment('2020-09-20', 'HH:mm:ss')
 				},
 				{
 					key: '1',
 					name: 'Edward King 1',
 					age: '32',
-					address: 'London, Park Lane no. 1',
+					time:moment('2020-09-20', 'HH:mm:ss')
 				}
 			],
 			count: 2,
 		};
+		console.log(moment('13:30:56', 'HH:mm:ss'))
 	}
 	handleSave = (row) => {
 		console.log(row)
