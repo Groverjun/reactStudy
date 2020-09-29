@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Table, Input, Form,Select } from 'antd';
+import { Table, Input, Form,Select,DatePicker } from 'antd';
 const EditableContext = React.createContext();
 const { Option } = Select;
 
@@ -50,36 +50,72 @@ const EditableCell = ({
 		}
 	};
 	if (editable) {
-		// console.log(record)
-		childNode = editing ? (
-			<Form.Item
-				name={dataIndex}
-				rules={[
-					{
-					required: true,
-					message: `${title} is required.`,
-					},
-				]}
-				>
-				{
-					dataIndex==="name"?
-					(<Input ref={inputRef} onPressEnter={save} onBlur={save} />):
-					(   
-						<Select ref={inputRef}   onChange={save} >
-							<Option value="jack">Jack</Option>
-							<Option value="lucy">Lucy</Option>
-							<Option value="Yiminghe">yiminghe</Option>
-						</Select>
+		if(editing){
+			switch (formType){
+				case 'Input':
+					childNode = (
+						<Form.Item
+							name={dataIndex}
+							rules={[
+								{
+									required: true,
+									message: `${title} is required.`
+								}
+							]}
+						>
+							<Input ref={inputRef} onPressEnter={save} onBlur={save} />
+						</Form.Item>
 					)
-				}
-			</Form.Item>
-		) : (
-			<div onClick={toggleEdit}>
-				{children}
-			</div>
-		);
+					break;
+				case 'Select':
+					childNode = (
+						<Form.Item
+							name={dataIndex}
+							rules={[
+								{
+									required: true,
+									message: `${title} is required.`
+								}
+							]}
+						>
+							<Select ref={inputRef}   onChange={save} >
+								<Option value="jack">Jack</Option>
+								<Option value="lucy">Lucy</Option>
+								<Option value="Yiminghe">yiminghe</Option>
+							</Select>
+						</Form.Item>
+					)
+					break;
+				case 'DatePicker':
+					childNode = (
+						<Form.Item
+							name={dataIndex}
+							rules={[
+								{
+									required: true,
+									message: `${title} is required.`
+								},
+							]}
+						>
+							<DatePicker
+								format="YYYY-MM-DD HH:mm:ss"
+							/>
+						</Form.Item>
+					)
+					break;
+				default:
+					break;
+			}
+		}else{
+			childNode = (
+				<div onClick={toggleEdit}>
+					{children}
+				</div>
+			)
+		}
+		
 	}
-  return <td {...restProps}>{childNode}</td>;
+    return <td {...restProps}>{childNode}</td>;
 };
 
 class EditableTable extends React.Component {
@@ -89,30 +125,31 @@ class EditableTable extends React.Component {
 			{
 				title: 'name',
 				dataIndex: 'name',
-				width: '30%',
+				formType:"Input",
 				editable: true,
 			},
 			{
 				title: 'age',
 				dataIndex: 'age',
-				editable: true,
+				formType:"Select",
+				editable: false,
 			}
 		];
 		this.state = {
 			selectedRowKeys: [],
 			dataSource: [
 				{
-				key: '0',
-				name: 'Edward King 0',
-				age: '32',
-				address: 'London, Park Lane no. 0',
+					key: '0',
+					name: 'Edward King 0',
+					age: '32',
+					address: 'London, Park Lane no. 0',
 				},
 				{
-				key: '1',
-				name: 'Edward King 1',
-				age: '32',
-				address: 'London, Park Lane no. 1',
-				},
+					key: '1',
+					name: 'Edward King 1',
+					age: '32',
+					address: 'London, Park Lane no. 1',
+				}
 			],
 			count: 2,
 		};
@@ -127,8 +164,8 @@ class EditableTable extends React.Component {
 			dataSource: newData,
 		});
 	};
-  	onSelectChange = selectedRowKeys => {
-    	console.log('selectedRowKeys changed: ', selectedRowKeys);
+  	onSelectChange = (selectedRowKeys,data) => {
+    	console.log('selectedRowKeys changed: ', selectedRowKeys,data);
     	this.setState({ selectedRowKeys });
   	};
 	render() {
@@ -156,6 +193,7 @@ class EditableTable extends React.Component {
 				editable: col.editable,
 				dataIndex: col.dataIndex,
 				title: col.title,
+				formType:col.formType,
 				handleSave: this.handleSave,
 			}
 			},
