@@ -10,6 +10,8 @@ class Home extends React.Component {
 		//组件挂载之前
 		channelInfo().then(({data})=>{
             this.setState({data:data})
+        }).catch(err=>{
+            
         })
     }
     componentDidMount(){

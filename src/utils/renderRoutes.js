@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Route,Redirect ,Switch} from 'react-router-dom';
 
 let result = []
@@ -28,11 +27,12 @@ export const renderRoutes = (routes,userIf) =>{
 							props =>{
 								//判断登录
 								if(userIf){
-									return <React.Fragment>
-												<Redirect to ="/login"></Redirect>
-												<route.component {...props}  route={route}/>
-											</React.Fragment>
+									if(window.location.pathname!=='/login'){
+										window.location.href="/login"
+									}
+									return <route.component {...props}  route={route}/>
 								}else{
+									
 									if(!routerFind(routes,result)){
 										return <Redirect to ='/404'></Redirect>
 									}else{

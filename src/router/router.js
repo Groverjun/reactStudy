@@ -77,6 +77,13 @@ const router = [
                                 icon:"icon-facebook",
                             },
                             {
+                                path: '/index/clientAdmins/visit',
+                                title:"跟进拜访",
+                                url:"views/clientAdmin/visit",
+                                component: require('@/views/clientAdmin/visit').default,
+                                icon:"icon-facebook",
+                            },
+                            {
                                 path: '/index/clientAdmins/publicClient',
                                 title:"公海客户",
                                 url:"views/clientAdmin/publicClient",

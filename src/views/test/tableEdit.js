@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Table, Input, Form,Select,DatePicker } from 'antd';
+import {EditOutlined} from '@ant-design/icons';
 import moment from 'moment';
 const EditableContext = React.createContext();
 const { Option } = Select;
 
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
-  console.log(form)
+//   console.log(form)
   return (
     <Form form={form} component={false}>
 	<EditableContext.Provider value={form}>
@@ -30,6 +31,8 @@ const EditableCell = ({
 	const [editing, setEditing] = useState(false);
 	const inputRef = useRef();
 	const form = useContext(EditableContext);
+	const dateFormat = 'YYYY-MM-DD HH:mm:ss';
+	let time = null;
 	useEffect(() => {
 		if (editing) {
 			inputRef.current.focus();
@@ -42,16 +45,38 @@ const EditableCell = ({
 			[dataIndex]: record[dataIndex],
 		});
 	};
+	
+	const timeChange = async (e,dateString) => {
+		time = dateString
+	};
 	const save = async (e) => {
+		
 		try {
 			const values = await form.validateFields();
-			// console.log( values.format("YYYY-MM-DD HH:mm:ss"))
+			if(values.time){
+				if(time===null){
+					time = e._i
+				}
+				values.time = moment(time, 'YYYY-MM-DD HH:mm:ss')
+			}
 			toggleEdit();
 			handleSave({ ...record, ...values });
+			time = null
 		} catch (errInfo) {
 			console.log('Save failed:', errInfo);
 		}
-	};
+	}
+	const htmlEdit = (formType,children,record) => {
+		
+		if(formType==='DatePicker'){
+			return record.time._i
+		}
+		return children
+	}
+	const disabledDate =(current)=> {
+		// Can not select days before today and today
+		return current && current <moment().subtract(1, "days");
+	}
 	if (editable) {
 		if(editing){
 			switch (formType){
@@ -90,12 +115,13 @@ const EditableCell = ({
 					)
 					break;
 				case 'DatePicker':
+					console.log(formType,children,record)
 					childNode = (
 						<Form.Item
 							name={dataIndex}
 							rules={ [{ type: 'object', required: true, message: 'Please select time!' }]}
 						>
-							<DatePicker ref={inputRef} onChange={save}/>
+							<DatePicker  disabledDate={disabledDate}  showTime  open={true} ref={inputRef}  onChange={timeChange}  onOk={save} format={dateFormat}/>
 							
 						</Form.Item>
 					)
@@ -105,8 +131,9 @@ const EditableCell = ({
 			}
 		}else{
 			childNode = (
-				<div onClick={toggleEdit}>
-					1{children}
+				<div onDoubleClick={toggleEdit} className="toggleEdit">
+					{htmlEdit(formType,children,record)}
+					<EditOutlined />
 				</div>
 			)
 		}
@@ -129,7 +156,7 @@ class EditableTable extends React.Component {
 				title: '年龄',
 				dataIndex: 'age',
 				formType:"Select",
-				// editable: false,
+				editable: true,
 			},
 			{
 				title: '时间',
@@ -145,21 +172,22 @@ class EditableTable extends React.Component {
 					key: '0',
 					name: 'Edward King 0',
 					age: '32',
-					time:moment('2020-09-20', 'HH:mm:ss')
+					time:moment('2020-09-09 02:02:03', 'YYYY-MM-DD HH:mm:ss')
 				},
 				{
 					key: '1',
 					name: 'Edward King 1',
 					age: '32',
-					time:moment('2020-09-20', 'HH:mm:ss')
+					time:moment('2020-08-09 02:02:03', 'YYYY-MM-DD HH:mm:ss'),
+					// time:'2020/09/20'
 				}
 			],
 			count: 2,
 		};
-		console.log(moment('13:30:56', 'HH:mm:ss'))
+		// console.log(moment('2020/09/20', 'YYYY/MM/DD'))
 	}
 	handleSave = (row) => {
-		console.log(row)
+		// console.log(row)
 		const newData = [...this.state.dataSource];
 		const index = newData.findIndex((item) => row.key === item.key);
 		const item = newData[index];

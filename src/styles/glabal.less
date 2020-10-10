@@ -62,15 +62,15 @@ html,body,#root,.layout,.app{
 .ant-layout-header{
     height: auto;
     padding: 0 ;
-    color: rgba(0, 0, 0, 0.85);
+    // color: rgba(0, 0, 0, 0.85);
     line-height: inherit;
     background:none;
     .header{
         height: 64px;
-        padding: 0 50px;
-        color:#fff;
+        padding: 0 30px 0 15px;
+        color:#000;
         line-height: 64px;
-        background: #001529;
+        background: #fff;
     }
 }
 .headTab{
@@ -104,14 +104,158 @@ html,body,#root,.layout,.app{
         margin:20px 10px;
     }
 }
-.tableIcon{
+.toggleEdit{
+    cursor: pointer;
     .anticon{
         opacity: 0;
     }
 
 }
-.tableIcon:hover{
+.toggleEdit:hover{
     .anticon{
         opacity: 1;
+    }
+}
+.header_icon{
+    line-height:64px;
+    cursor:pointer;
+    display:inline-block;
+    height:64px;
+}
+.header_msg{
+    box-shadow: 0 6px 16px -8px rgba(0,0,0,.08), 0 9px 28px 0 rgba(0,0,0,.05), 0 12px 48px 16px rgba(0,0,0,.03);
+    width: 300px;
+    .title{
+        height: 40px;
+        line-height: 40px;
+        padding: 0 16px;
+        overflow: hidden;
+        line-height: 40px;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: center;
+    }
+    .ant-menu-item{
+        display: flex;
+        justify-content: space-between;
+        span{
+            width: 50%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    .header_msgbottomBar{
+        height: 46px;
+        color: rgba(0,0,0,.85);
+        line-height: 46px;
+        text-align: center;
+        border-top: 1px solid #f0f0f0;
+        border-radius: 0 0 2px 2px;
+        transition: all .3s;
+    }
+}
+.login{
+    height: 100%;
+    .login_logo{
+        position: fixed;
+        top: 20px;
+        left: 40px;
+        display: none;
+    }
+    .login_main{
+        // width: 1200px;
+        // margin: auto;
+        padding: 40px;
+        height: 100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        .ant-row{
+            width: 100%;
+        }
+        .login_left{
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+        }
+        .login_right{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            .ant-form-large .ant-form-item-label > label{
+                font-size: 16px;
+                font-family: PingFang SC;
+                font-weight: 400;
+                color: #747A8B;
+            }
+            .ant-input-lg{
+                height: 50px;
+                background: none;
+            }
+            .ant-input-affix-wrapper-lg{
+                height: 50px;
+                // padding: 11.5px 11px;
+                font-size: 16px;
+                padding: 0 11px;
+            }
+            .ant-form-item{
+                margin-bottom: 35px;
+                
+                .ant-input-suffix{
+                    font-size: 16px;
+                    font-family: PingFang SC;
+                    font-weight: 400;
+                    color: #9DA2BC;
+                    cursor: pointer;
+                }
+            }
+        }
+        .login_title{
+            width: 400px;
+            .h1{
+                font-size: 47px;
+                font-family: PingFang SC;
+                font-weight: bold;
+                color: #222222;
+            }
+            .h2{
+                font-size: 27px;
+                font-family: PingFang SC;
+                font-weight: 500;
+                color: #222222;
+                margin-bottom: 40px;
+            }
+        }
+        .ant-form{
+            width: 400px;
+        }
+        .login-form-button {
+            width: 100%;
+            height: 55px;
+            margin-top: 10px;
+        }
+    }
+}
+.card-container{
+    background-color: #fff;
+    .ant-tabs > .ant-tabs-nav, .ant-tabs > div > .ant-tabs-nav{
+        padding-left: 30px;
+    }
+    .ant-tabs-tab{
+        font-size: 16px;
+        // font-family: SimSun;
+        font-weight: normal;
+        padding: 25px 0;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+        font-weight: normal;
+    }
+}
+@media(min-width:1600px){
+    .login{
+        .login_main{
+            width: 1600px;
+            margin: auto;
+        }
     }
 }

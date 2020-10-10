@@ -42,6 +42,7 @@ class NavContend extends React.Component {
 		const { current,openkeys} = this.props;
 		return (
 			<Menu
+				style={{ background: '#1890ff' }}
 				onClick={this.props.onHandleClick}
 				theme="dark"
 				selectedKeys={current}

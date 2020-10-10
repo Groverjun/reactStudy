@@ -14,4 +14,5 @@ const phone = (rule, value) => {
 }
 export default {
 	phone: [{ required: true, validator: phone}],
+	empty: [{ required: true, message: '不能为空'}],
 }

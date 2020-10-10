@@ -11,7 +11,7 @@ const { Header, Content,Sider } = Layout;
 class Layouts extends React.Component {
 	state = {
 		collapsed: false,
-		current:[window.location.pathname],
+		// current:[window.location.pathname],
 		openkeys:[window.location.pathname],
 		mode: 'vertical',
 		routerlist:[]
@@ -20,7 +20,7 @@ class Layouts extends React.Component {
 
 	handleClick = e => {
 		// console.log(e.item.node.innerText)
-		this.setState({ current: e.key });
+		// this.setState({ current: e.key });
 		this.state.routerlist.push(e.key+"_"+e.item.node.innerText)
 		this.setState({
 			routerlist:[...new Set(this.state.routerlist)]
@@ -40,14 +40,14 @@ class Layouts extends React.Component {
 	}
 	componentDidMount(){
 		//挂载完成
-		this.setState({current:[window.location.pathname]})
+		// this.setState({current:[window.location.pathname]})
 	}
     render() {
         return (
             <Layout className="layout">
-				<Sider style={{ background: '#001529' }} trigger={null} collapsible {...this.state}>
+				<Sider style={{ background: '#1890ff' }} trigger={null} collapsible {...this.state}>
 					<div className="logo"></div>
-					<NavContend {...this.props} onHandleClick= {this.handleClick.bind(this)}  {...this.state}/>
+					<NavContend {...this.props} onHandleClick= {this.handleClick.bind(this)} current={[window.location.pathname]} {...this.state}/>
 				</Sider>
 				<Layout>
 					<Header>

@@ -1,4 +1,4 @@
-import { ADD_ROUTER,USER_DATA } from "./actionTypes";
+import { ADD_ROUTER,USER_DATA,CLIENT_ADMIN } from "./actionTypes";
 
 
 export const addRouter = (content) =>{
@@ -11,6 +11,13 @@ export const addRouter = (content) =>{
 export const userData = (content) =>{
   return  ({
     type: USER_DATA,
+    payload:content
+  })
+}
+
+export const clientData = (content) =>{
+  return  ({
+    type: CLIENT_ADMIN,
     payload:content
   })
 }
