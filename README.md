@@ -1,5 +1,5 @@
 
-# 新版SFA 前端项目
+# react学习
 
 ## 本项目包管理使用yran ,未避免冲突请勿使用npm
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
